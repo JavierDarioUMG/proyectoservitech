@@ -1,0 +1,159 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Servi Tech</title>
+        <link rel="stylesheet" href="base.css">
+    <br>
+
+    </head>
+    <header>
+    <section>
+        <a href="index.html"><img class="foto1" src="Logo.png" alt="imagen 1"></a>
+    <h1><span>Servi</span> Tech</h1>
+    <label for="toggle-1" class="toggle-menu"><ul><li></li> <li></li> <li></li></ul></label>
+    <input type="checkbox" id="toggle-1">
+    
+    <nav>
+    <ul>
+    <li><a href="Servicio Tecnico.html"></i>Servicio Técnico</a></li>
+    <li><a href="facturacion.html"></i>Facturacion</a></li>
+    <li><a href="accesoriosysuministros.html"></i>Accesorios</a></li>
+    <li><a href="repuestos.html"></i>Componentes</a></li>
+    <li><a href="computadoras.html"></i>Computadoras</a></li>
+    <li><a href="redes.html"></i>Redes</a></li>
+    </ul>
+    </nav>
+    </header>
+    </section>
+<h1 class="titulosub">Facturacion</h1>
+<br>
+<br>
+
+<style>
+    table {
+      width: 100%;
+    }
+    
+  </style>
+
+<body onload="cambioPrecio()">
+    <form>
+      <center><table>
+      <th><p>Cliente:</p>></th>
+  <th><input type="text" id="cliente" name="cliente"></th>
+    
+  <th><p>Codigo de producto: </p></th>
+  
+  <th><select id="producto" name="producto" >
+    <option value="1" data-precio="1335" data-prod="ROUTER RT-AX55 AX1800 DUAL BAND">01</option>
+    <option value="2" data-precio="410" data-prod="VEKTOR 2400-AC SISTEMA MESH 2 NODOS">02</option>
+    <option value="3" data-precio="1980" data-prod="ROUTER RT-AX82U V2 AX5400 DUAL BAND WIFI 6">03</option>
+    <option value="4" data-precio="315" data-prod="ROUTER MR50G AC1900 DUALBAND GIGABIT">04</option>
+    <option value="5" data-precio="200" data-prod="780070 KIT HERRAMIENTAS RED 4 PZAS">05</option>
+    <option value="6" data-precio="55" data-prod="211062 CRIMP RJ45 Y CORTADOR">06</option>
+    <option value="7" data-precio="800" data-prod="RE6700 EXTENSOR REPETIDOR AC1200">07</option>
+    <option value="8" data-precio="120" data-prod="MW300RE EXTENSOR N300 300Mbps">08</option>
+    <option value="9" data-precio="130" data-prod="545006 TRANSCEPTOR SFP GIGABIT FIBRA OPTICA">09</option>
+    <option value="10" data-precio="645" data-prod="561068 SWITCH DE 16PUERTOS 10/100/1000">10</option>
+    <option value="11" data-precio="220" data-prod="SWITCH DE 5 PUERTOS GIGABIT ETHERNET">11</option>
+    <option value="12" data-precio="845" data-prod="BUSINESS LAPAC1300 AC1300 WIFI 5">12</option>
+    <option value="13" data-precio="24660" data-prod="CREATOR Z16PB12UG i7 12700H">13</option>
+    <option value="14" data-precio="10350" data-prod="G513RC-HN148W R7 6800HS 3.2GHZ">14</option>
+    <option value="15" data-precio="15475" data-prod="ALIENWARE M15R7 RYZEN 7 6800H 3.2GHZ">15</option>
+    <option value="16" data-precio="12935" data-prod="FX517ZR-HN013W i7 12650H 2.3GHZ">16</option>
+    <option value="17" data-precio="10350" data-prod="FX507ZC4-HN132 i7 12700H 2.3GHZ">17</option>
+    <option value="18" data-precio="7515" data-prod="PAVILION DK2500LA i5 11300H 3.1GHZ">18</option>
+    <option value="19" data-precio="6340" data-prod="FA506IHR-HN08 RYZEN 5 3GHZ">19</option>
+    <option value="20" data-precio="5590" data-prod="HP ENVY 3087C i7 12700 2.1 12GB">20</option>
+    <option value="21" data-precio="6015" data-prod="OPTIPLEX 3000 i5 12500 3GHZ 8GB 256GB SSD">21</option>
+    <option value="22" data-precio="10750" data-prod="TODOEN1 DELL 24-5400 23.8 i7 1165G7 2.8GHZ">22</option>
+    <option value="23" data-precio="8315" data-prod="TODOEN1 DELL INSPIRON 5410 I5 1235U 1.3GHZ">23</option>
+    <option value="24" data-precio="5190" data-prod="TODOEN1 HP 24-DF1517LA 23.8 i5 2.4GHZ">24</option>
+  </selecton></th>
+  
+  <th><p>Cantidad:</p></th>
+  <th><input type="number" id="cantidad" name="cantidad"></th>
+      
+  <th><p>precio individual</p></th>
+  <th><label> Q <span id="PT">1335</span></label></th>
+      <th><button type="button" onclick="agregarProducto()">Agregar</button></th>
+  </tr>  
+  </form>
+  </table></center>
+    <table id="tablaFactura">
+      <tr>
+        <th>Codigo</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Producto</th>
+      </tr>
+    </table>
+  
+    
+    <h3>Total: <span id="total">0</span></h3>
+  <script>
+    function agregarProducto() {
+      var cliente = document.getElementById("cliente").value;
+      var producto = document.getElementById("producto").value;
+      var cantidad = document.getElementById("cantidad").value;
+      var precio = document.getElementById("producto").options[document.getElementById("producto").selectedIndex].getAttribute('data-precio');
+      var Code = document.getElementById("producto").options[document.getElementById("producto").selectedIndex].getAttribute('data-prod');
+      
+      var tabla = document.getElementById("tablaFactura");
+      
+      var newRow = tabla.insertRow();
+      var productoCell = newRow.insertCell(0);
+      var cantidadCell = newRow.insertCell(1);
+      var precioCell = newRow.insertCell(2);
+      var CodCell = newRow.insertCell(3);
+  
+      
+      productoCell.innerHTML = producto;
+      cantidadCell.innerHTML = cantidad;
+      precioCell.innerHTML = precio*cantidad;
+      CodCell.innerHTML = Code;
+      
+      calcularTotal();
+    }
+  
+    function calcularTotal() {
+      var total = 0;
+      var tabla = document.getElementById("tablaFactura");
+      for (var i = 1; i < tabla.rows.length; i++) {
+        total += parseInt(tabla.rows[i].cells[2].innerHTML);
+      }
+      
+      document.getElementById("total").innerHTML = total;
+    }
+    function cambioPrecio() {
+    const producto = document.getElementById('producto');
+    const precioSeleccionado = document.getElementById('PT');
+  
+    producto.addEventListener('change', () => {
+      const precio = producto.options[producto.selectedIndex].dataset.precio;
+      precioSeleccionado.textContent = `${precio}`;
+    });
+  }
+  </script>
+  </body>
+
+<section id="about" class="content">
+
+    </section>
+    <hr>
+    <br>
+    <br>
+    <footer>
+        <ul class="social">
+        <center>
+        <table>
+            <td>
+                <a title="telefono"><img img class="logoredes" src="logotel.png" alt="logoredes" /></a>
+                <p class="logoredes">24111800</p>
+            </td>
+        </table>
+        <p>Puede encontrarnos:</p> <p> 3a. Avenida 9-00 zona 2, 01002 Interior Finca El Zapote, Cdad. de Guatemala 01002</p>
+        </center>
+        </ul>
+        </footer>
